@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import BlockFlix from './BlockFlix';
+import { BrowserRouter } from 'react-router-dom';
+import BlockFlix from './blockflix';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <BlockFlix />
+    <BrowserRouter>
+      <BlockFlix />
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
