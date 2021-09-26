@@ -51,7 +51,7 @@ export const ButtonLogin = styled.button`
 
 // TEXTO //
 export const TextLoginTitle = styled.p`
-    color: rgba(0, 100, 255, 1);
+    color: #6395F2;
     font-weight: 600;
     font-size: 3rem;
     padding: 24px;

@@ -1,12 +1,13 @@
 import axios from "axios";
 import { movies, language, apiKey, HomeNowPlayingQtd } from "../dados/config";
 import Card from "../components/card/card";
+
 import {
     ContainerPage, ContainerTop, ContainerTopCard, TextTop,
     ContainerMiddleBar, SelectMovie, SelectMovieOrder, SelectMovieGenreEspecific, SelectOptions,
-    ContainerFooter, ContainerFooterCard, ContainerFooterBar
-
+    ContainerCenter, ContainerCenterCard
 } from "../styles/home.style";
+
 import { useEffect, useState } from "react";
 
 
@@ -36,6 +37,10 @@ export default function Home() {
             {
                 nowPlayingList !== undefined ?
                     <ContainerPage>
+
+
+
+
                         <ContainerTop>
                             <TextTop>LANÇAMENTOS</TextTop>
                             <ContainerTopCard>
@@ -46,6 +51,7 @@ export default function Home() {
                                 }
                             </ContainerTopCard>
                         </ContainerTop>
+
 
                         <ContainerMiddleBar>
                             <TextTop>SELECIONE POR &nbsp;&nbsp;</TextTop>
@@ -72,15 +78,19 @@ export default function Home() {
 
                         </ContainerMiddleBar>
 
-                        <ContainerFooter>
-                            <ContainerFooterCard>
+
+                        <ContainerCenter>
+                            <ContainerCenterCard>
                                 {
                                     nowPlayingList === undefined ? "" : movies.results.map(filme => {
                                         return <Card key={filme.id} filme={filme} />
                                     })
                                 }
-                            </ContainerFooterCard>
-                        </ContainerFooter>
+                            </ContainerCenterCard>
+                        </ContainerCenter>
+
+
+
 
                     </ContainerPage>
 

@@ -70,12 +70,12 @@ export const SelectOptions = styled.option`
 font-size: 16px;
 `;
 
-// FOOTER /////////////////////////////////////////////////////////
-export const ContainerFooter = styled.footer`
+// CENTER - MAIN /////////////////////////////////////////////////////////
+export const ContainerCenter = styled.main`
     // border: 1px solid green;
     margin: 10px;
 `;
-export const ContainerFooterCard = styled.div`
+export const ContainerCenterCard = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap:wrap;

@@ -6,9 +6,18 @@
     /* border: 1px solid yellow; */
 }
 html{
+    text-shadow: chartreuse;
+    height: 100vh;
+    background-color: #091534;
     /* width: 100%; */
     /* border: 1px solid red; */
-    background-image: url(../img/login-bg1.jpg);
+
+}
+#root {
+    width:100%;
+    height: 100vh;
+    /* border: 2px solid chartreuse; */
+
 }
 
 .n{

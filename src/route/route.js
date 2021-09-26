@@ -1,5 +1,6 @@
 import Login from "../pages/login";
 import Home from "../pages/home";
+import MovieDetails from "../pages/moviedetails";
 
 
 const title = "BlockFlix";
@@ -7,19 +8,19 @@ const title = "BlockFlix";
 export const routes = [
     {
         path: "/orders",
-        component: "Login",
+        component: "Orders",
         title: title + "- Ordens",
         login: false,
     },
     {
         path: "/checkout",
-        component: "Login",
+        component: "CheckOut",
         title: title + "- Checkout",
         login: false,
     },
     {
-        path: "/description/:movie",
-        component: "Login",
+        path: "/moviedetails/:id",
+        component: MovieDetails,
         title: title + "- Descrição",
         login: false,
     },
