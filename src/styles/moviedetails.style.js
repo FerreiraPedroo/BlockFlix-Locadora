@@ -24,7 +24,7 @@ export const ContainerCenter = styled.div`
 `;
 // CONTAINER LEFT /////////////////////////////////////////////////////////// 
 export const ContainerLeft = styled.div`
-    width: 40%;
+    width: 50%;
     display: flex;
     flex-direction: column;
 
@@ -55,7 +55,7 @@ export const ContainerRight = styled.div`
     display:flex;
     flex-direction:column;
     align-items: flex-end;
-    width: 60%;
+    width: 50%;
     padding: 20px;
     // border: 3px solid tomato; 
 `;
@@ -76,24 +76,37 @@ export const ButtonAddCart = styled(Button)`
 `;
 // CONTAINER MIDDLE //////////////////////////////////////////////////////////
 export const ContainerMiddle = styled.div`
-    // border:2px solid red;
     text-align: center;
 `;
 export const TextTrailer = styled.p`
     color:white;
     font-size: 30px;
     font-weight: bold;
-    padding:20px 0px 5px 0px;;
-    background: linear-gradient(to top, rgba(100,1,1,0.5));
-
+    padding:10px 0px 10px 0px;
+    margin: 20px 0px;
+    background: linear-gradient(rgba(9, 21, 52,1), #007,rgba(9, 21, 52,1));
+    
+    // border: 1px solid red;
 `;
+
+
 // CONTAINER IMAGENS ///////////////////////////////////////////////////////////
 export const ContainerImagens = styled.div`
-
+    display:flex;
+    flex-flow: row no-wrap;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10px 20px;
+    margin-bottom: 10px;
 `;
 export const ImgPosterAll = styled(ImgPoster)`
 margin: 5px;
 border: 1px solid white;
+
+&:hover{
+    transform: scale(1.02);
+    cursor: pointer;
+}
 // border: 0px;
 `;
 

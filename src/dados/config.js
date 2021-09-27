@@ -1,23 +1,48 @@
+import axios from "axios";
 // CHAVE DE ACESSO A API
 // será recebido depois de acessar o login
 export const apiKey = "8c4b9c259a7ff3b6a1eba387b6b7faff";
 export const language = "pt-BR";
 
-///FUNCIONAL/////////////////////////////////////////////////////////////////////
-// retorna a URL completa para os detalhes do filme informado
-// pelo ID, com uma opção da escolha da linguagem.
-//
-export function movieDetailsFullPath(id, apiKey, language) {
-   return "http://api.themoviedb.org/3/movie/" + id + "?api_key=" + apiKey + "&language=" + language +"&append_to_response=videos,images";
-   
+
+export async function movieActorsPath(id, apiKey) {
+   console.log("|movieActorsPath > INICIADO ")
+   const data = await axios.get("http://api.themoviedb.org/3/movie/" + id + "/credits?api_key=" + apiKey)
+   return data.data
 }
+export async function movieRecomendationsPath(id, apiKey) {
+   console.log("|movieRecomendationsPath > INICIADO ")
+   const data = await axios.get("http://api.themoviedb.org/3/movie/" + id + "/recommendations?api_key=" + apiKey + "&language=" + language + "&page=1")
+   console.log(data)
+   return data.data
+}
+
+export function movieDetailsFullPath(id, apiKey, language) {
+   return "http://api.themoviedb.org/3/movie/" + id + "?api_key=" + apiKey + "&language=" + language + "&append_to_response=videos,images";
+
+}
+
+// https://api.themoviedb.org/3/movie/436969/8c4b9c259a7ff3b6a1eba387b6b7faff
+
+///FUNCIONAL/////////////////////////////////////////////////////////////////////
+// (FORMULA)
+// em um valor padrão de 100k de pessoas assistindo
+// quero receber as HomeNowPlayingQtd os 5 primeiros filmes
+// ou até a soma dos anteriores até 5º completar a
+// quantidade de 100k de pessoas assistindo.
+// [podendo mudar o texto da pagina de destaque para muitos assistidos quando tiver 2 ou somente 1 filme as 100k pessoas assistindo]
+// esses 100k de pessoas pode ser a média diária dos ultimos X dias,
+// semanas ou meses(periodo). podendo ser flexivel no seu periodo e quantidade de pessoas.
+//
+export const HomeNowPlayingQtd = 5
+
 ///FUNCIONAL/////////////////////////////////////////////////////////////////////
 // Passa todas as informações do filme por props
 // para fazer o calculo do filme
 // ex: promoção de 10% em filmes do genero de terror.
 // pegaria da props do filme na categoria e adicionaria um desconto
 // para quem fosse do genero de terror.
-// 
+//
 export function moviePrice(movie) {
    // console.log("MOVIE", movie)
    // melhorias > a const "genre" tem todos os generos com seus respectivos descontos, tirar do SWITCH CASE e colocar apartir da const.
@@ -63,17 +88,20 @@ export function moviePrice(movie) {
 
    return totalValue;
 }
-///FUNCIONAL/////////////////////////////////////////////////////////////////////
-// (FORMULA)
-// em um valor padrão de 100k de pessoas assistindo
-// quero receber as HomeNowPlayingQtd os 5 primeiros filmes
-// ou até a soma dos anteriores até 5º completar a
-// quantidade de 100k de pessoas assistindo.
-// [podendo mudar o texto da pagina de destaque para muitos assistidos quando tiver 2 ou somente 1 filme as 100k pessoas assistindo]
-// esses 100k de pessoas pode ser a média diária dos ultimos X dias,
-// semanas ou meses(periodo). podendo ser flexivel no seu periodo e quantidade de pessoas.
-//
-export const HomeNowPlayingQtd = 5
+
+
+
+
+
+
+
+
+
+// axios.get('https://randomuser.me/api/?page=1&results=10&nat=us')
+
+
+
+
 
 ////////////////////////////////////////////////////////////////////////
 // Aqui contem todos os gêneros dos filmes e seus codigos.
@@ -183,7 +211,6 @@ export const genre =
       "37": 37,
    }
 }
-
 
 export const certification = {
    "BR": [

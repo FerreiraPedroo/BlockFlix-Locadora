@@ -5,10 +5,17 @@ export const ContainerPage = styled.div`
     width: 100vw;
     height: 100vh;
     background-image: url("../img/login-bg.jpg");
-    background-repeat: no-repeat;
+    // background-repeat: no-repeat;
     background-size:auto;
 
     // border: 1px solid red;
+    // animation: scroll 100s linear infinite;
+
+    // @keyframes scroll {
+    //     100%{
+    //      background-position:0px -1125px;
+    //    }
+    //  }
 `;
 
 // CONTAINER //
@@ -104,5 +111,6 @@ export const Form = styled.form`
     padding: 60px 50px 100px 50px;
     border-radius: 8px;
     background-color: rgba(0,0,0,0.5);
+
 `;
 
