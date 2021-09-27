@@ -1,7 +1,7 @@
 import axios from "axios";
 import { movies, language, apiKey, HomeNowPlayingQtd } from "../dados/config";
-import Card from "../components/card/card";
 
+import Card from "../components/card/card";
 import {
     ContainerPage, ContainerTop, ContainerTopCard, TextTop,
     ContainerMiddleBar, SelectMovie, SelectMovieOrder, SelectMovieGenreEspecific, SelectOptions,
@@ -17,7 +17,7 @@ export default function Home() {
 
     useEffect(() => {
         async function moviesNow() {
-            return await axios.get("https://api.themoviedb.org/3/movie/now_playing?api_key=" + apiKey + "&language=" + language + "&page=1")
+            return await axios.get("https://api.themoviedb.org/3/movie/now_playing?api_key=" + apiKey + "&language=" + language + "&page=1") 
                 .then((response) => {
                     const { data } = response;
                     setNowPlayingList(data);

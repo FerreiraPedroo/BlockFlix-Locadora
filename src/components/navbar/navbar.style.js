@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 const ContainerNavBar = styled.nav`
     height: 60px;
-    background-color: #012998;
+    background-color: #091534;
 `;
 const NavBarButton = styled.div`
     float: left;

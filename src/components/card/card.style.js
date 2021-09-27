@@ -20,7 +20,9 @@ export const CardContainer = styled.div`
     border-radius: 6px;
 `;
 export const CardImg = styled.img`
-    height: 192px;
+    // max-width: 100%;
+    // height: auto;
+    // height: 192px;
     border-radius: 4px 4px 0px 0px;
 `;
 export const CardInfo = styled.div`
@@ -72,3 +74,61 @@ export const CardButtonAddCart = styled(Button)`
         box-shadow: 0px 0px 1px rgba(255,255,255,0.4), 0px 0px 5px rgba(0,0,255,1.5);
       }
 `;
+
+
+
+
+
+
+
+
+// https://www.w3schools.com/css/tryit.asp?filename=trycss_image_gallery_responsive
+
+
+// div.gallery img {
+//     width: 100%;
+//     height: auto;
+//   }
+  
+  
+  
+//   .responsive {
+  
+//     float: left;
+//     width: 256px;
+//     height: 192px;
+  
+//   }
+  
+//   @media only screen and (max-width: 700px) {
+//     .responsive {
+//       width: 49.99999%;
+//         height: 49.99999%;
+  
+//     }
+//   }
+  
+//   @media only screen and (max-width: 500px) {
+//     .responsive {
+//       width: 100%;
+//             height: 100%%;
+//     }
+//   }
+  
+  
+//   </style>
+//   </head>
+//   <body>
+  
+//   <h2>Responsive Image Gallery</h2>
+//   <h4>Resize the browser window to see the effect.</h4>
+  
+//   <div class="responsive">
+//     <div class="gallery">
+//       <a target="_blank" href="img_5terre.jpg">
+//         <img src="img_5terre.jpg" alt="Cinque Terre" width="600" height="400">
+//       </a>
+//       <div class="desc">Add a description of the image here</div>
+//     </div>
+//   </div>
+  

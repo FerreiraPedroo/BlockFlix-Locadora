@@ -1,13 +1,14 @@
 
 import styled from "styled-components";
 
-export const ContainerPage = styled.p`
+export const ContainerPage = styled.div`
     width: 100vw;
     height: 100vh;
-    border: 1px solid red;
     background-image: url("../img/login-bg.jpg");
     background-repeat: no-repeat;
     background-size:auto;
+
+    // border: 1px solid red;
 `;
 
 // CONTAINER //
@@ -17,8 +18,10 @@ export const ContainerLogin = styled.div`
     align-items: center;
     width: 100vw;
     height: 100vh;    
-    background-color:rgba(0,0,80,0.7);
+    // background-color:rgba(0,0,80,0.7);
+    background:  linear-gradient(to right,rgba(0,0,25,1) 20%, transparent , transparent , rgba(0,0,25,1) 80%)
 `;
+// ,linear-gradient(to left, #333, #333 50%, #eee 75%, #333 75%);
 export const ContainerRemember = styled.div`
     display: flex;
     align-items: center;
@@ -51,9 +54,9 @@ export const ButtonLogin = styled.button`
 
 // TEXTO //
 export const TextLoginTitle = styled.p`
-    color: #6395F2;
+    color: #012998;
     font-weight: 600;
-    font-size: 3rem;
+    font-size: 4rem;
     padding: 24px;
 `;
 export const TextLoginEntrar = styled.p`

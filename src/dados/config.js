@@ -3,19 +3,15 @@
 export const apiKey = "8c4b9c259a7ff3b6a1eba387b6b7faff";
 export const language = "pt-BR";
 
-// PESQUISANDO O FILME PELO ATOR
-export const moviePerActor = "https://api.themoviedb.org/3/search/person?api_key=8c4b9c259a7ff3b6a1eba387b6b7faff&language=en-US&query=Cruise&page=1&include_adult=false"
-
-////////////////////////////////////////////////////////////////////////
+///FUNCIONAL/////////////////////////////////////////////////////////////////////
 // retorna a URL completa para os detalhes do filme informado
 // pelo ID, com uma opção da escolha da linguagem.
 //
 export function movieDetailsFullPath(id, apiKey, language) {
-   return "http://api.themoviedb.org/3/movie/" + id + "?api_key=" + apiKey + "&language=" + language + "&append_to_response=videos,images";
+   return "http://api.themoviedb.org/3/movie/" + id + "?api_key=" + apiKey + "&language=" + language +"&append_to_response=videos,images";
+   
 }
-
-
-////////////////////////////////////////////////////////////////////////
+///FUNCIONAL/////////////////////////////////////////////////////////////////////
 // Passa todas as informações do filme por props
 // para fazer o calculo do filme
 // ex: promoção de 10% em filmes do genero de terror.
@@ -23,7 +19,7 @@ export function movieDetailsFullPath(id, apiKey, language) {
 // para quem fosse do genero de terror.
 // 
 export function moviePrice(movie) {
-   console.log("MOVIE", movie)
+   // console.log("MOVIE", movie)
    // melhorias > a const "genre" tem todos os generos com seus respectivos descontos, tirar do SWITCH CASE e colocar apartir da const.
    const valueBase = movie.vote_average * 1;
    const allGenres = !!movie.genre_ids ? movie.genre_ids : !!movie.genre ? movie.genre : []
@@ -67,9 +63,7 @@ export function moviePrice(movie) {
 
    return totalValue;
 }
-
-
-////////////////////////////////////////////////////////////////////////
+///FUNCIONAL/////////////////////////////////////////////////////////////////////
 // (FORMULA)
 // em um valor padrão de 100k de pessoas assistindo
 // quero receber as HomeNowPlayingQtd os 5 primeiros filmes
@@ -732,3 +726,7 @@ export const movies =
    "total_pages": 38,
    "total_results": 742
 }
+
+
+// PESQUISANDO O FILME PELO ATOR
+export const moviePerActor = "https://api.themoviedb.org/3/search/person?api_key=8c4b9c259a7ff3b6a1eba387b6b7faff&language=en-US&query=Cruise&page=1&include_adult=false"
