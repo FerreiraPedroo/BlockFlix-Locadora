@@ -3,10 +3,11 @@ import styled from "styled-components";
 // CONTAINER RIGHT /////////////////////////////////////////////////////////// 
 export const ContainerRecommendations = styled.div`
     display:flex;
+    flex-direction: row;
     align-items: flex-start;
     padding: 10px 20px;
     margin-bottom: 10px;
-    border: 1px solid yellow; 
+    // border: 1px solid yellow; 
 `;
 export const ContainerImagens = styled.div`
     display:flex;
@@ -35,11 +36,12 @@ export const TextInfo = styled.p`
 `;
 
 export const ImgRecommendations = styled.img`
-padding: 4px 0px;
+margin: 4px 0px;
 &:hover{
     transform: scale(1.02);
     cursor: pointer;
 }
-// border: 1px solid red;
+border-radius: 6px;
+border: 1px solid white;
 `;
 

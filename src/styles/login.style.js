@@ -45,14 +45,14 @@ export const ButtonLogin = styled.button`
 
     font-size: 1.0rem;
     font-weight: 900;
-    color: white;
-    background-color: blue;
+    color: #6395F2;
+    background-color: navy;
     border: 0px;
     border-radius: 4px;
 
     &:hover{
-        cursor: pointer;        
-        border: 2px solid silver;
+        cursor: pointer;   
+        border: 1px solid #6395F2;
     }
     &:active{
         font-size: 0.95rem;

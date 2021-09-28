@@ -24,7 +24,7 @@ export default function Actors({ id, apiKey }) {
         actor === undefined ? "" :
         <>
         <TextActors>ELENCO</TextActors>
-            <ContainerActors style={{display: "flex"}} >
+            <ContainerActors>
                 {actor.cast.map((actors) => {
                     return (
                         <ContainerImagens key={actors.name}>

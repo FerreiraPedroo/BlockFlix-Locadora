@@ -22,19 +22,22 @@ export default function Recommendations({ id, apiKey }) {
 
     return (
         recomentations === undefined ? "" :
-            recomentations.results.map((recomentation) => {
-                return (
-                    <>
-                        <TextRecommendations>RECOMENDAÇÕES</TextRecommendations>
-                        <ContainerRecommendations>
-                            <ContainerImagens key={recomentation.id}>
-                                <TextInfo>{recomentation.title}</TextInfo>
-                                <ImgRecommendations src={"https://image.tmdb.org/t/p/w185" + recomentation.poster_path} alt={recomentation.name} />
-                            </ContainerImagens>
-                        </ContainerRecommendations>
-                    </>
-                )
-            })
+            <>
+                <TextRecommendations>RECOMENDAÇÕES</TextRecommendations>
+                <ContainerRecommendations>
+                    {recomentations.results.map((recomentation) => {
+                        return (
+                            <>
+                                <ContainerImagens key={recomentation.id}>
+                                    <TextInfo>{recomentation.title}</TextInfo>
+                                    <ImgRecommendations src={"https://image.tmdb.org/t/p/w185" + recomentation.poster_path} alt={recomentation.name} />
+                                </ContainerImagens>
+                            </>
+                        )
+                    })
+                    }
+                </ContainerRecommendations>
+            </>
     )
 }
 

@@ -1,6 +1,7 @@
 import Login from "../pages/login";
 import Home from "../pages/home";
 import MovieDetails from "../pages/moviedetails";
+import CheckOut from "../pages/checkout";
 
 
 const title = "BlockFlix";
@@ -14,7 +15,7 @@ export const routes = [
     },
     {
         path: "/checkout",
-        component: "CheckOut",
+        component: CheckOut,
         title: title + "- Checkout",
         login: false,
     },
