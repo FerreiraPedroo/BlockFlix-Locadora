@@ -2,31 +2,12 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    font-family: Roboto, sans-serif;
-    /* border: 1px solid yellow; */
+    font-family: Arial, Helvetica, sans-serif;
+    /* border:1px solid lime; */
 }
 html{
-    /* height: 100vh; */
     background-color: #091534;
-    /* width: 100%; */
-    /* border: 1px solid red; */
-
 }
-#root {
-    /* width:100%; */
-    /* height: 100vh; */
-    /* border: 2px solid chartreuse; */
-
-}
-
-.n{
-color: rgba(3, 4, 94, 1);
-color: rgba(2, 62, 138, 1);
-color: rgba(0, 119, 182, 1);
-color: rgba(0, 150, 199, 1);
-color: rgba(0, 180, 216, 1);
-color: rgba(72, 202, 228, 1);
-color: rgba(144, 224, 239, 1);
-color: rgba(173, 232, 244, 1);
-color: rgba(202, 240, 248, 1);
-}
+html, body {
+	height: 100%;
+	}

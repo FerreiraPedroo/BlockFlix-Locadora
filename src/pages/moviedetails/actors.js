@@ -1,40 +1,39 @@
 import { useState, useEffect } from "react";
-import { movieActorsPath } from "../../dados/config";
-import {
-    ContainerActors,ContainerImagens,
-    TextActors,TextInfo,
-    ImgActorPhoto
-}from "../../styles/moviedetails/actors.style"
+import { movieActorsReturn } from "../../dados/config";
+import { ContainerActors, ContainerImagens, TextActors, TextInfo, ImgActorPhoto } from "../../styles/moviedetails/actors.style";
+import Carousel from "../../components/carrousel/carousel";
 
 export default function Actors({ id, apiKey }) {
-    const [actor, setActor] = useState()
+    const [actor, setActor] = useState();
 
     useEffect(() => {
-        console.log("|ACTORS > EFFECT: ANTES")
         async function getActors(id, apiKey) {
-            return setActor(await movieActorsPath(id, apiKey))
+            return setActor(await movieActorsReturn(id, apiKey))
         }
         getActors(id, apiKey)
-        console.log("ACTOR => ", actor)
-        console.log("|ACTORS > EFFECT: DEPOIS")
     }, [])
 
 
+    if (actor === undefined) return <></>
     return (
-        actor === undefined ? "" :
         <>
-        <TextActors>ELENCO</TextActors>
+            <TextActors>ELENCO</TextActors>
             <ContainerActors>
-                {actor.cast.map((actors) => {
-                    return (
-                        <ContainerImagens key={actors.name}>
-                            <TextInfo>{actors.name}</TextInfo>
-                            <ImgActorPhoto src={"https://image.tmdb.org/t/p/w185"+actors.profile_path} alt={actors.name} />
-                            <TextInfo CGRAY>Personagem:<TextInfo> {actors.character}</TextInfo></TextInfo>
-                        </ContainerImagens>
-                    )
-                })
-                }
+                <Carousel show={5}>
+                    {
+                        actor.cast.map((actors) => {
+                            return (
+                                <div>
+                                    <ContainerImagens key={actors.name} >
+                                        <ImgActorPhoto src={actors.profile_path === null ? "/img/nophoto.jpg" : "https://image.tmdb.org/t/p/w185" + actors.profile_path} alt={actors.name} />
+                                        <TextInfo bold >{actors.name}</TextInfo>
+                                        <TextInfo grey nohover>{actors.character}</TextInfo>
+                                    </ContainerImagens>
+                                </div>
+                            )
+                        })
+                    }
+                </Carousel>
             </ContainerActors>
         </>
     )

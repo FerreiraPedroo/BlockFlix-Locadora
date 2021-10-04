@@ -17,10 +17,13 @@ export const ContainerTopCard = styled.div`
     // border: 1px solid white;
 `;
 export const TextTop = styled.p`
-    color:white;
-    font-size: 24px;
-
-    // border: 1px solid red;
+display: flex;
+font-size: 30px;
+font-weight:bold;
+color: white;
+// margin: 0px 0px 10px 0px;
+padding: 10px 20px;
+background: linear-gradient(rgba(9, 21, 52,1), #005,rgba(9, 21, 52,1));
 `;
 
 // MIDDLE BAR /////////////////////////////////////////////////////////
@@ -30,30 +33,7 @@ export const ContainerMiddleBar = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-
-    background-color: rgba(0,0,0,0.2);
-    // border: 1px solid red;
-`;
-export const SelectMovie = styled.select`
-    width: 160px;
-    height: 32px;
-
-    font-size: 16px;
-    border:0px;
-    border-radius: 4px;
-    padding: 0px 8px;
-    outline: none;
-`;
-export const SelectMovieOrder = styled.select`
-    width: 160px;
-    height: 32px;
-
-    margin-left: auto;
-    font-size: 16px;
-    border:0px;
-    border-radius: 4px;
-    padding: 0px 8px;
-    outline: none;
+    background: linear-gradient(rgba(9, 21, 52,1), #005,rgba(9, 21, 52,1));
 `;
 export const SelectMovieGenreEspecific = styled.select`
     width: 160px;

@@ -1,134 +1,71 @@
 import styled from "styled-components";
-import {Button} from "../button/button.style"
+import {ButtonDetails} from "../button/button.style"
 
 
 export const CardContainer = styled.div`
-    width: 184px;    
+    width: 165px;
+    min-height: 328px;    
     display: flex;
     flex-direction: column;
     aling-items: center;
 
-    margin:5px 15px 10px 10px;
+    margin:5px 10px 10px 10px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.8);
-    
-    transition: 0.3s;
-    &:hover {
-        box-shadow: 0px 0px 10px rgba(255,255,255,0.2);
-    }
 
-    background-color: white;
+    &:hover{
+        transform: scale(1.01);
+    }
     border-radius: 6px;
 `;
 export const CardImg = styled.img`
-    // max-width: 100%;
-    // height: auto;
-    // height: 192px;
+    height: 231px;
+    width: 165px;
     border-radius: 4px 4px 0px 0px;
 `;
 export const CardInfo = styled.div`
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100%;
     padding: 2px 2px;
     background: rgba(3, 4, 34, 1);
     border-radius: 0px 0px 4px 4px;
 `;
-export const CardTextTitle = styled.p`
-    height: 38px;
+export const CardTextTitle = styled.a`
     padding: 2px;
-    margin: 5px 0px;
+    margin: 0px 0px 2px 0px;
 
-    color:white;
+    color:#6395F2;
     font-size: 14px;
+    font-weight: bold;
     text-align: center;
-    vertical-align: middle;
+    text-decoration: none;
+
+    // transition: 0.5s;
+    &:hover{
+        color:white;
+    }
 `;
 export const CardGroupButton = styled.div`
     display:flex;
     flex-direction: row;
     justify-content: space-around;
-
+    align-items: flex-end;
+    height: 100%;
 `;
-export const CardButtonDetails = styled(Button)`
-    width: 48px;
-    height: 36px;
+export const CardButtonAddCart = styled(ButtonDetails)`
+    align-items: center;
     margin: 5px;
-
-    font-size: 12px;
-    color: white;
-    background-color: rgba(3, 4, 94, 1);
-    &:hover {
-        box-shadow: 0px 0px 1px rgba(255,255,255,0.4), 0px 0px 5px rgba(0,0,255,1.5);
-      }
-
+    padding:4px;
 `;
-export const CardButtonAddCart = styled(Button)`
-    width: 128px;
-    height: 36px;
-    margin: 5px;
-
-    font-size: 12px;
-
-    color: white;
-    background-color: rgba(3, 4, 94, 1);
-    &:hover {
-        box-shadow: 0px 0px 1px rgba(255,255,255,0.4), 0px 0px 5px rgba(0,0,255,1.5);
-      }
+export const CardTextValue = styled.p`
+    padding: 2px;
+    font-size: 14px;
+    color:#6395F2;
+    height:40px;
 `;
-
-
-
-
-
-
-
-
-// https://www.w3schools.com/css/tryit.asp?filename=trycss_image_gallery_responsive
-
-
-// div.gallery img {
-//     width: 100%;
-//     height: auto;
-//   }
-  
-  
-  
-//   .responsive {
-  
-//     float: left;
-//     width: 256px;
-//     height: 192px;
-  
-//   }
-  
-//   @media only screen and (max-width: 700px) {
-//     .responsive {
-//       width: 49.99999%;
-//         height: 49.99999%;
-  
-//     }
-//   }
-  
-//   @media only screen and (max-width: 500px) {
-//     .responsive {
-//       width: 100%;
-//             height: 100%%;
-//     }
-//   }
-  
-  
-//   </style>
-//   </head>
-//   <body>
-  
-//   <h2>Responsive Image Gallery</h2>
-//   <h4>Resize the browser window to see the effect.</h4>
-  
-//   <div class="responsive">
-//     <div class="gallery">
-//       <a target="_blank" href="img_5terre.jpg">
-//         <img src="img_5terre.jpg" alt="Cinque Terre" width="600" height="400">
-//       </a>
-//       <div class="desc">Add a description of the image here</div>
-//     </div>
-//   </div>
-  
+export const Text = styled.span`
+    color: grey;
+    font-size:12px;
+    text-decoration: line-through;
+`;

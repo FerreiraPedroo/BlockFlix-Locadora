@@ -1,19 +1,19 @@
-import { Formik, ErrorMessage } from "formik";
-import { 
-    ContainerPage, ContainerLogin, ContainerRemember, 
-    ButtonLogin, 
-    TextLoginTitle, TextLoginEntrar, TextLoginError, TextLoginRemember,
-    InputText, InputPassword, InputCheckbox,
-    Form
-    } from "../styles/login.style";
-
+import { useContext } from "react";
+import { Formik, ErrorMessage, Form, Field } from "formik";
+import {
+    ContainerPage, ContainerLogin,
+    ButtonLogin,
+    TextLoginTitle, TextLoginEntrar, TextLoginError
+} from "../styles/login.style";
+import "../styles/login-text.css"
+import { CartMovieContext } from "../context/cartmoviescontext";
 
 
 export default function Login() {
+    const { loged, setLoged } = useContext(CartMovieContext);
+
     const initialValues = {
-        user: "",
-        password: "",
-        remember: 0,
+        user: ""
     }
     const validate = values => {
         const errors = {};
@@ -23,57 +23,49 @@ export default function Login() {
         if (!values.password) {
             errors.password = "Digite a senha";
         }
-
         return errors;
     }
     const onSubmit = values => {
-        console.log("ON SUBMIT SEND", values);
+        if (loged === null) {
+            sessionStorage.setItem("login", JSON.stringify(values));
+            setLoged(JSON.stringify(values))
+        }
     }
 
     return (
-        <ContainerPage>
-            <ContainerLogin>
-
-                <TextLoginTitle>BLOCKFLIX</TextLoginTitle>
-                <Formik
-                    initialValues={initialValues}
-                    validate={validate}
-                    onSubmit={onSubmit}
-                >{(props) => (
-                    <Form onSubmit={props.handleSubmit} >
-
-                        <TextLoginEntrar>Entrar</TextLoginEntrar>
-                        <InputText
-                            id="user"
-                            name="user"
-                            type="text"
-                            placeholder="Usuário"
-                            onChange={props.handleChange}
-                        />
-                        <TextLoginError><ErrorMessage name="user" />&nbsp;</TextLoginError>
-
-                        <InputPassword
-                            id="password"
-                            name="password"
-                            type="password"
-                            placeholder="Senha"
-                            onChange={props.handleChange}
-                        />
-                        <TextLoginError><ErrorMessage name="password" />&nbsp;</TextLoginError>
-                        <ButtonLogin type="submit" model="login">Entrar</ButtonLogin>
-
-                        <ContainerRemember>
-                            <InputCheckbox model="checkbox-login" />
-                            <TextLoginRemember>Lembrar usuário</TextLoginRemember>
-                        </ContainerRemember>
-
-
-                    </Form>
-                )}
-                </Formik>
-
-
-            </ContainerLogin>
-        </ContainerPage>
+        <>
+            <ContainerPage>
+                <ContainerLogin>
+                    <TextLoginTitle>BLOCKFLIX</TextLoginTitle>
+                    <Formik
+                        initialValues={initialValues}
+                        validate={validate}
+                        onSubmit={onSubmit}
+                    >
+                        <Form className="form">
+                            <TextLoginEntrar>Entrar</TextLoginEntrar>
+                            <Field
+                                className="inputText"
+                                id="user"
+                                name="user"
+                                type="text"
+                                placeholder="Usuário"
+                                
+                            />
+                            <TextLoginError><ErrorMessage name="user" />&nbsp;</TextLoginError>
+                            <Field
+                                className="inputText"
+                                id="password"
+                                name="password"
+                                type="password"
+                                placeholder="Senha"
+                            />
+                            <TextLoginError><ErrorMessage name="password" />&nbsp;</TextLoginError>
+                            <ButtonLogin type="submit">Entrar</ButtonLogin>
+                        </Form>
+                    </Formik>
+                </ContainerLogin>
+            </ContainerPage>
+        </>
     )
 }

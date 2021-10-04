@@ -17,7 +17,6 @@ export const ContainerPage = styled.div`
     //    }
     //  }
 `;
-
 // CONTAINER //
 export const ContainerLogin = styled.div`
     display: flex;
@@ -28,14 +27,6 @@ export const ContainerLogin = styled.div`
     // background-color:rgba(0,0,80,0.7);
     background:  linear-gradient(to right,rgba(0,0,25,1) 20%, transparent , transparent , rgba(0,0,25,1) 80%)
 `;
-// ,linear-gradient(to left, #333, #333 50%, #eee 75%, #333 75%);
-export const ContainerRemember = styled.div`
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    color:silver;
-`;
-
 // BUTTON //
 export const ButtonLogin = styled.button`
     width: 320px;
@@ -62,9 +53,17 @@ export const ButtonLogin = styled.button`
 // TEXTO //
 export const TextLoginTitle = styled.p`
     color: #012998;
-    font-weight: 600;
-    font-size: 4rem;
     padding: 24px;
+    font-size: 70px;
+    margin: 20px 0px;
+    text-align: justify;
+    user-select:none;
+    text-decoration: none;
+    font-style: oblique;
+    font-weight: bolder;
+    text-shadow: 2px 2px 3px navy;
+
+
 `;
 export const TextLoginEntrar = styled.p`
     color:white;
@@ -77,40 +76,25 @@ export const TextLoginError = styled.p`
     font-size: 16px;
     margin: 5px 0px 10px 0px;
 `;
-export const TextLoginRemember = styled.p`
-    margin-left: 10px;
-`;
 
-// INPUT //
-export const InputText = styled.input.attrs(props => ({
-    type: "text"
-}))`
-    width: 320px;
-    height: 36px;
 
-    border:0px;
-    border-radius: 4px;
-    padding: 0px 8px;
-`;
-export const InputPassword = styled(InputText).attrs(props => ({
-    type: "password"
-}))`
-`;
-export const InputCheckbox = styled.input.attrs(props => ({
-    type:"checkbox"
-}))`
-    width: 16px;
-    height: 16px;
-    margin: 10px 0px 10px 0px;
-`;
 
-// FORM //
-export const Form = styled.form`
-    display:flex;
-    flex-direction:column;
-    padding: 60px 50px 100px 50px;
-    border-radius: 8px;
-    background-color: rgba(0,0,0,0.5);
 
-`;
+
+// export const InputCheckbox = styled.input.attrs(props => ({
+//     type:"checkbox"
+// }))`
+//     width: 16px;
+//     height: 16px;
+//     margin: 10px 0px 10px 0px;
+// `;
+// export const TextLoginRemember = styled.p`
+//     margin-left: 10px;
+// `;
+// export const ContainerRemember = styled.div`
+//     display: flex;
+//     align-items: center;
+//     flex-direction: row;
+//     color:silver;
+// `;
 

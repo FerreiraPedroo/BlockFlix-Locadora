@@ -1,107 +1,119 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useParams, useHistory } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
+
 import YouTube from "react-youtube";
+import { CartMovieContext } from "../context/cartmoviescontext";
+import { apiKey, language, movieDetailsReturn, moviePrice, movieImagensReturn } from "../dados/config";
 
-import { apiKey, language, movieDetailsFullPath, moviePrice } from "../dados/config";
 import Actors from "./moviedetails/actors";
+import Poster from "./moviedetails/posters";
 import Recommendations from "./moviedetails/recommendations";
-
 import {
     ContainerPage, ContainerCenter, ContainerLeft, ContainerRight, ContainerMiddle,
-    TextTitle, TextTagLine, TextInfo, TextTrailer, ContainerImagens,
-    ImgPoster, ImgPosterAll, ButtonAddCart
-
+    TextTitle, TextTagLine, TextInfo, TextTrailer, CartIcon,
+    ImgPoster,ButtonAddCart
 } from "../styles/moviedetails.style"
+
 
 
 export default function MovieDetails() {
     const { id } = useParams();
+    const { addMovieCart } = useContext(CartMovieContext)
     const [movieDetailsData, setMovieDetailsData] = useState();
     const [movieImages, setMovieImages] = useState();
-    const [movieDetailsPath] = useState(movieDetailsFullPath(id, apiKey, language))
-
+    const history = useHistory();
+    let movieValues = {};
 
     useEffect(() => {
-        axios.get(movieDetailsPath)
-            .then((data) => {
-                setMovieDetailsData(data.data)
-            })
-
-        axios.get("https://api.themoviedb.org/3/movie/" + id + "/images?api_key=" + apiKey + "&language=" + language + ",en")
-            .then((data) => {
-                setMovieImages(data.data)
-            })
+        async function movieDetails() {
+            const data = await movieDetailsReturn(id, apiKey, language)
+            console.log("DATA", data)
+            return setMovieDetailsData(data);
+        }
+        movieDetails()
+        async function movieImagens() {
+            const data = await movieImagensReturn(id, apiKey, language)
+            return setMovieImages(data);
+        }
+        movieImagens()
 
     }, [])
 
+    async function addMovie() {
+        const movieDados = {}
+        movieDados.id = movieDetailsData.id;
+        movieDados.title = movieDetailsData.title;
+        movieDados.poster_path = movieDetailsData.poster_path;
+        movieDados.genres = movieDetailsData.genres;
+        movieDados.release_date = movieDetailsData.release_date;
+        movieDados.runtime = movieDetailsData.runtime;
+        movieDados.title = movieDetailsData.title;
+        movieDados.vote_average = movieDetailsData.vote_average;
+        addMovieCart(movieDados)
+        history.push("/checkout")
+    }
+
+    if (movieDetailsData !== undefined) movieValues = moviePrice(movieDetailsData)
+    console.log(movieValues)
+    if (movieImages === undefined || movieDetailsData === undefined) return (<></>)
     return (
-        <>
-            {(movieImages !== undefined && movieDetailsData !== undefined) === true ?
-                <ContainerPage>
-                    <ContainerCenter key={"movieDetailsData.id"} bg={movieImages.backdrops.length !== 0 ? "http://image.tmdb.org/t/p/w1280" + movieImages.backdrops[parseInt(Math.random() * movieImages.backdrops.length)].file_path : ""}>
-                        <ContainerLeft>
-                            <TextTitle>{movieDetailsData.title}</TextTitle>
-                            <TextTagLine>{movieDetailsData.tagline}</TextTagLine>
-                            <TextInfo F18 CGRAY>{movieDetailsData.release_date.slice(0, 4)}&nbsp; | &nbsp;{movieDetailsData.runtime} minutos</TextInfo>
-                            <TextInfo F18 CGRAY>Gêneros:&nbsp;
-                                {movieDetailsData.genres.map((genre, index) => {
-                                    return <TextInfo key={genre.name}>{genre.name}{index === movieDetailsData.genres.length - 1 ? "" : ", "}</TextInfo>
-                                })}
-                            </TextInfo>
-                            {movieDetailsData.overview.length === 0 ? "" : <TextInfo F18 CGRAY>Sinopse:&nbsp; <TextInfo >{movieDetailsData.overview}</TextInfo></TextInfo>}
-                        </ContainerLeft>
-                        <ContainerRight>
-                            <ImgPoster src={"http://image.tmdb.org/t/p/w300" + movieDetailsData.poster_path} alt="POSTER" />
-                            <ButtonAddCart>ALUGAR<p>R${moviePrice(movieDetailsData)}</p>
-                            </ButtonAddCart>
-                        </ContainerRight>
-                    </ContainerCenter>
+        <ContainerPage>
+            <ContainerCenter key={"movieDetailsData.id"} bg={movieImages.backdrops.length !== 0 ? "http://image.tmdb.org/t/p/w1280" + movieImages.backdrops[parseInt(Math.random() * movieImages.backdrops.length)].file_path : ""}>
+                <ContainerLeft>
+                    <TextTitle>{movieDetailsData.title}</TextTitle>
+                    <TextTagLine>{movieDetailsData.tagline}</TextTagLine>
+                    <TextInfo F18 grey>{movieDetailsData.release_date.slice(0, 4)}&nbsp; | &nbsp;{movieDetailsData.runtime} minutos</TextInfo>
+                    <TextInfo F18 grey>Gêneros:&nbsp;
+                        {movieDetailsData.genres.map((genre, index) => {
+                            return <TextInfo key={genre.name}>{genre.name}{index === movieDetailsData.genres.length - 1 ? "" : ", "}</TextInfo>
+                        })}
+                    </TextInfo>
+                    {movieDetailsData.overview.length === 0 ? "" : <TextInfo F18 grey>Sinopse:&nbsp; <TextInfo >{movieDetailsData.overview}</TextInfo></TextInfo>}
+                </ContainerLeft>
+                <ContainerRight>
+                    <ImgPoster src={"http://image.tmdb.org/t/p/w300" + movieDetailsData.poster_path} alt="POSTER" />
+                    <ButtonAddCart font="18" id={movieDetailsData.id} onClick={addMovie}>
+                        <CartIcon className="material-icons md-48">add_shopping_cart</CartIcon>
+                        <div>
+                            R${movieValues.totalValue.toFixed(2)}
+                            <br />
+                            {movieValues.discountMovieGenre.totalDiscount === 0 ? "" :
+                                <TextInfo decoration grey>
+                                    R${movieValues.originalValue.toFixed(2)}
+                                </TextInfo>
+                            }
+                        </div>
 
-                    <ContainerMiddle>
+                    </ButtonAddCart>
+                </ContainerRight>
+            </ContainerCenter>
 
+            <ContainerMiddle>
+                {/* YOUTUBE */}
+                {movieDetailsData.videos.results.length > 0 ?
+                    <>
+                        <TextTrailer F18 >TRAILER</TextTrailer>
+                        <YouTube videoId={movieDetailsData.videos.results[0].key} />
+                    </>
+                    : ""
+                }
 
-                        {/* YOUTUBE */}
-                        {movieDetailsData.videos.results.length > 0 ?
-                            <>
-                                <TextTrailer F18 >TRAILER
-                                <YouTube videoId={movieDetailsData.videos.results[0].key} /></TextTrailer>
-                            </>
-                            : ""
-                        }
-
-
-                        {/* ATORES */}
-                        <Actors id={id} apiKey={apiKey} />
-
-
-
-                        {/* CARTAZES */}
-                        {movieImages.posters.length > 0 ?
-                            <>
-                                <TextTrailer F18 >CARTAZES</TextTrailer>
-                                <ContainerImagens>
-
-                                    {movieImages.posters.length > 0 ?
-                                        movieImages.posters.map((poster, index) => {
-                                            return <ImgPosterAll key={poster.file_path} src={"https://image.tmdb.org/t/p/w185" + poster.file_path} alt="POSTER" />
-                                        })
-                                        : ""
-                                    }
-                                </ContainerImagens>
-                            </>
-                            : ""
-                        }
+                {/* ATORES */}
+                <Actors id={id} apiKey={apiKey} />
 
 
-                        {/* Recommendations */}
-                        <Recommendations id={id} apiKey={apiKey} />
+                {/* CARTAZES */}
+                {movieImages.posters.length > 0 ?
+                    <>
+                        <Poster postersImg={movieImages} />
+                    </>
+                    : ""
+                }
 
+                {/* Recommendations */}
+                <Recommendations id={id} apiKey={apiKey} />
 
-                    </ContainerMiddle>
-                </ContainerPage>
-                : ""
-            }
-        </>
+            </ContainerMiddle>
+        </ContainerPage>
     )
 }

@@ -1,33 +1,22 @@
 import styled from "styled-components";
-import { Button } from "../components/button/button.style";
+import { ButtonDetails } from "../components/button/button.style";
 
-// CONTAINER PAGE /////////////////////////////////////////////////
 export const ContainerPage = styled.div`
-    // background-color: black;
-    // border: 1px solid blue; 
 `;
-// CONTAINER CENTER ///////////////////////////////////////////////////////// 
 export const ContainerCenter = styled.div`
     display: flex;
     flex-direction: row;
     height:720px;
     background-color: #091534;
     background: linear-gradient(to top, rgba(9, 21, 52,1), rgba(9, 21, 52,0.1),transparent,transparent,transparent,transparent,transparent,transparent),linear-gradient(to right, rgba(1,1,1,1), rgba(10,10,10,0.8),transparent,transparent),url(${props => props.bg});
-    
-    // background-position: center, bottom;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;
-
-
-    // border: 1px solid red;
 `;
-// CONTAINER LEFT /////////////////////////////////////////////////////////// 
 export const ContainerLeft = styled.div`
     width: 50%;
     display: flex;
     flex-direction: column;
-
     padding: 20px;
 `;
 export const TextTitle = styled.span`
@@ -43,38 +32,39 @@ export const TextTagLine = styled.span`
     margin: 0px 0px 30px 0px;
 `;
 export const TextInfo = styled.span`
-    color : ${props => props.CGRAY ? "gray" : "white" };
-    font-size: ${props => props.F18 ? "20px" : "18px" };
+    color : ${props => props.grey ? "grey" : "white" };
+    font-size: ${props => props.F22 ? "22px" : "16px" };
+    ${props => (props.decoration === true ? "text-decoration: line-through;" : "")};
     margin: 8px 0px;
     text-align: justify;
-    // border: 1px solid red;
     overflow-wrap: break-word;
+    user-select:none;
+    text-decoration: undescore;
 `;
-// CONTAINER RIGHT /////////////////////////////////////////////////////////// 
 export const ContainerRight = styled.div`
     display:flex;
     flex-direction:column;
     align-items: flex-end;
     width: 50%;
     padding: 20px;
-    // border: 3px solid tomato; 
 `;
 export const ImgPoster = styled.img.attrs(props =>({
     src: props.src
 }))`
-border: 2px solid white;
-border-radius: 6px;
+    border: 2px solid white;
+    border-radius: 6px;
+    background-color: white;
 `;
-export const ButtonAddCart = styled(Button)`
+export const ButtonAddCart = styled(ButtonDetails)`
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    column-gap: 24px;;
+    align-items: center;
     width: 300px;
     height: 64px;
-
     margin:20px 0px;
-    color: #6395F2;
-    background-color: #000080;
-
 `;
-// CONTAINER MIDDLE //////////////////////////////////////////////////////////
 export const ContainerMiddle = styled.div`
     text-align: center;
 `;
@@ -83,14 +73,10 @@ export const TextTrailer = styled.p`
     font-size: 30px;
     font-weight: bold;
     padding:10px 0px 10px 0px;
-    margin: 20px 0px;
-    background: linear-gradient(rgba(9, 21, 52,1), #007,rgba(9, 21, 52,1));
-    
-    // border: 1px solid red;
+    margin: 20px 0px 10px 0px;
+    background: linear-gradient(rgba(9, 21, 52,1), #006,rgba(9, 21, 52,1));
+    user-select:none;
 `;
-
-
-// CONTAINER IMAGENS ///////////////////////////////////////////////////////////
 export const ContainerImagens = styled.div`
     display:flex;
     flex-flow: row no-wrap;
@@ -100,62 +86,13 @@ export const ContainerImagens = styled.div`
     margin-bottom: 10px;
 `;
 export const ImgPosterAll = styled(ImgPoster)`
-margin: 5px;
-border: 1px solid white;
-
-&:hover{
-    transform: scale(1.02);
-    cursor: pointer;
-}
-// border: 0px;
+    margin: 5px;
+    border: 1px solid white;
+    &:hover{
+        transform: scale(1.02);
+        cursor: pointer;
+    }
 `;
-
-
-
-
-
-
-// export const TextWhite = styled.span`
-//     color:white;
-//     padding-right: 5px;
-//     font-size:14px;
-//     margin: 10px 0px;
-// `;
-// export const TextActors = styled.div`
-//     color : gray;
-//     font-size: 16px;
-//     text-align: justify;
-//     margin: 10px 0px;
-// `;
-// export const TextAllGener = styled.div`
-//     color : gray;
-//     font-size: 18px;
-//     text-align: justify;
-//     margin: 10px 0px;
-// `;
-// export const TextRecomendation = styled.span`
-//     color:gray;
-//     padding-right: 5px;
-//     font-size:18px;
-
-//     margin: 10px 0px;
-// `;
-// export const TextSinopse = styled.span`
-
-// `;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export const CartIcon = styled.span`
+font-size: 40px;
+`;
