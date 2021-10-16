@@ -2,39 +2,48 @@ import styled from "styled-components";
 import { ButtonDetails } from "../components/button/button.style";
 
 export const ContainerPage = styled.div`
+
 `;
 export const ContainerCenter = styled.div`
     display: flex;
     flex-direction: row;
-    height:720px;
-    background-color: #091534;
-    background: linear-gradient(to top, rgba(9, 21, 52,1), rgba(9, 21, 52,0.1),transparent,transparent,transparent,transparent,transparent,transparent),linear-gradient(to right, rgba(1,1,1,1), rgba(10,10,10,0.8),transparent,transparent),url(${props => props.bg});
+    min-height:720px;
+    background-color: #002;//#091534;
+    background: linear-gradient(to top, rgba(0, 0, 36,1), rgba(9, 21, 52,0.1),transparent,transparent,transparent,transparent,transparent,transparent),linear-gradient(to right, rgba(1,1,1,1), rgba(10,10,10,0.8),transparent,transparent),url(${props => props.bg});
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;
+
+    @media(max-width: 720px) {
+        flex-direction: column;
+        align-items: center;
+      }
 `;
 export const ContainerLeft = styled.div`
-    width: 50%;
+    width: 55%;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 20px 6px;
+    @media(max-width: 720px) {
+        width: 100%;
+      }
 `;
 export const TextTitle = styled.span`
-    font-size: 34px;
+    font-size: 44px;
     font-weight: 600;
     color:white;
-    white-space: nowrap;
     margin-bottom: 10px;
 `;
 export const TextTagLine = styled.span`
     color : white;
-    font-size: 18px;
+    font-size: 24px;
     margin: 0px 0px 30px 0px;
 `;
 export const TextInfo = styled.span`
     color : ${props => props.grey ? "grey" : "white" };
-    font-size: ${props => props.F22 ? "22px" : "16px" };
+    font-size: ${props => props.F ? props.F+"px;" : "16px" };
     ${props => (props.decoration === true ? "text-decoration: line-through;" : "")};
+
     margin: 8px 0px;
     text-align: justify;
     overflow-wrap: break-word;
@@ -45,12 +54,15 @@ export const ContainerRight = styled.div`
     display:flex;
     flex-direction:column;
     align-items: flex-end;
-    width: 50%;
+    width: 45%;
     padding: 20px;
+
+    @media(max-width: 720px) {
+        width: 100%;
+        align-items: center;
+      }
 `;
-export const ImgPoster = styled.img.attrs(props =>({
-    src: props.src
-}))`
+export const ImgPoster = styled.img`
     border: 2px solid white;
     border-radius: 6px;
     background-color: white;
@@ -66,25 +78,28 @@ export const ButtonAddCart = styled(ButtonDetails)`
     margin:20px 0px;
 `;
 export const ContainerMiddle = styled.div`
+    display:flex;
+    flex-direction:column;
     text-align: center;
 `;
 export const TextTrailer = styled.p`
     color:white;
-    font-size: 30px;
+    font-size: 40px;
     font-weight: bold;
     padding:10px 0px 10px 0px;
     margin: 20px 0px 10px 0px;
-    background: linear-gradient(rgba(9, 21, 52,1), #006,rgba(9, 21, 52,1));
+    background-color: #003;
     user-select:none;
 `;
-export const ContainerImagens = styled.div`
-    display:flex;
-    flex-flow: row no-wrap;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 10px 20px;
-    margin-bottom: 10px;
-`;
+// export const ContainerImagens = styled.div`
+//     display:flex;
+//     flex-flow: row no-wrap;
+//     justify-content: center;
+//     align-items: flex-start;
+//     padding: 10px 20px;
+//     margin-bottom: 10px;
+// 
+// `;
 export const ImgPosterAll = styled(ImgPoster)`
     margin: 5px;
     border: 1px solid white;
@@ -94,5 +109,5 @@ export const ImgPosterAll = styled(ImgPoster)`
     }
 `;
 export const CartIcon = styled.span`
-font-size: 40px;
+    font-size: 40px;
 `;

@@ -8,13 +8,12 @@ export default function Actors({ id, apiKey }) {
 
     useEffect(() => {
         async function getActors(id, apiKey) {
-            return setActor(await movieActorsReturn(id, apiKey))
+            return setActor(await movieActorsReturn(id, apiKey));
         }
-        getActors(id, apiKey)
+        getActors(id, apiKey);
     }, [])
 
-
-    if (actor === undefined) return <></>
+    if (actor === undefined) return <></>;
     return (
         <>
             <TextActors>ELENCO</TextActors>
@@ -23,10 +22,10 @@ export default function Actors({ id, apiKey }) {
                     {
                         actor.cast.map((actors) => {
                             return (
-                                <div>
-                                    <ContainerImagens key={actors.name} >
+                                <div key={actors.name} >
+                                    <ContainerImagens >
                                         <ImgActorPhoto src={actors.profile_path === null ? "/img/nophoto.jpg" : "https://image.tmdb.org/t/p/w185" + actors.profile_path} alt={actors.name} />
-                                        <TextInfo bold >{actors.name}</TextInfo>
+                                        <TextInfo F="24" bold nohover>{actors.name}</TextInfo>
                                         <TextInfo grey nohover>{actors.character}</TextInfo>
                                     </ContainerImagens>
                                 </div>

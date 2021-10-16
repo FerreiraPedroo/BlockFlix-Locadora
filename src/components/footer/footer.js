@@ -1,7 +1,15 @@
 import styled from "styled-components"
 
 const FooterText = styled.div`
-display:flex;
+position: fixed;
+left: 0;
+bottom: 0;
+width: 100%;
+background-color: red;
+color: white;
+text-align: center;
+
+// display:flex;
 font-size: 16px;
 font-weight: bold;
 width: 100%;

@@ -4,32 +4,30 @@ import { ContainerRecommendations, ContainerImagens, TextRecommendations, TextIn
 import Carousel from "../../components/carrousel/carousel";
 
 export default function Recommendations({ id, apiKey }) {
-    const [recomentations, setRecomentations] = useState()
+    const [recomendations, setrecomendations] = useState()
 
     useEffect(() => {
-        async function getRecomendations(id, apiKey) {
-            return setRecomentations(await movieRecomendationsReturn(id, apiKey))
-        }
-        getRecomendations(id, apiKey)
+        (async () => {
+            setrecomendations(await movieRecomendationsReturn(id, apiKey));
+        })()
+
     }, [])
 
-
-    
-    if (recomentations === undefined) return (<></>)
+    if (!Array.isArray(recomendations) || recomendations.length === 0) return (<></>)
     return (
         <>
             <TextRecommendations>RECOMENDAÇÕES</TextRecommendations>
             <ContainerRecommendations>
                 <Carousel show={5}>
                     {
-                        recomentations.results.map((recomentation) => {
+                        recomendations.map((recomentation) => {
                             return (
-                                <>
-                                    <ContainerImagens key={recomentation.id}>
+                                <div key={"recomendations-" + recomentation.id}>
+                                    <ContainerImagens>
                                         <ImgRecommendations src={"https://image.tmdb.org/t/p/w185" + recomentation.poster_path} alt={recomentation.name} />
                                         <TextInfo href={"/moviedetails/" + recomentation.id}>{recomentation.title}</TextInfo>
                                     </ContainerImagens>
-                                </>
+                                </div>
                             )
                         })
                     }
@@ -38,6 +36,3 @@ export default function Recommendations({ id, apiKey }) {
         </>
     )
 }
-
-
-

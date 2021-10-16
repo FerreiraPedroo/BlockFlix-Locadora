@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 export const TextTrailer = styled.p`
     color:white;
-    font-size: 30px;
+    font-size: 40px;
     font-weight: bold;
     padding:10px 0px 10px 0px;
     margin: 20px 0px 10px 0px;
-    background: linear-gradient(rgba(9, 21, 52,1), #006,rgba(9, 21, 52,1));
+    background-color: #003;
     user-select:none;
 `;
 export const ContainerImagens = styled.div`

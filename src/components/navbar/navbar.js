@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { CartMovieContext } from "../../context/cartmoviescontext";
 import { ContainerNavBar, NavBarButton, NavBarButtonCart, NavBarButtonRight, NavBarButtonCartIcon, TextInfo, TextTitle } from "./navbar.style"
 
-
 export default function NavBar() {
     const { cartMovieList } = useContext(CartMovieContext);
 
@@ -26,12 +25,9 @@ export default function NavBar() {
                             <TextInfo className="material-icons md-48">receipt_long</TextInfo>
                         </NavBarButtonCart>
                     </a>
-
                     <NavBarButtonCart>
                         <TextInfo className="material-icons md-48">account_circle</TextInfo>
                     </NavBarButtonCart>
-
-
                 </NavBarButtonRight>
             </ContainerNavBar>
         </>

@@ -5,7 +5,6 @@ import {
     ButtonLogin,
     TextLoginTitle, TextLoginEntrar, TextLoginError
 } from "../styles/login.style";
-import "../styles/login-text.css"
 import { CartMovieContext } from "../context/cartmoviescontext";
 
 
@@ -42,19 +41,18 @@ export default function Login() {
                         validate={validate}
                         onSubmit={onSubmit}
                     >
-                        <Form className="form">
+                        <Form className="globalstyle-css-login-form">
                             <TextLoginEntrar>Entrar</TextLoginEntrar>
                             <Field
-                                className="inputText"
+                                className="globalstyle-css-login-inputText"
                                 id="user"
                                 name="user"
                                 type="text"
-                                placeholder="Usuário"
-                                
+                                placeholder="Usuário"                                
                             />
                             <TextLoginError><ErrorMessage name="user" />&nbsp;</TextLoginError>
                             <Field
-                                className="inputText"
+                                className="globalstyle-css-login-inputText"
                                 id="password"
                                 name="password"
                                 type="password"

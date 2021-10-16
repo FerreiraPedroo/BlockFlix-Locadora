@@ -1,14 +1,14 @@
 import axios from "axios";
-// CHAVE DE ACESSO A API
-export const apiKey = "8c4b9c259a7ff3b6a1eba387b6b7faff";
-export const language = "pt-BR";
+export const APIKEY = "8c4b9c259a7ff3b6a1eba387b6b7faff";
+export const LANGUAGE = "pt-BR";
+export const HomeNowPlayingQtd = 5
 
 export async function movieTopRatedReturn(apiKey, language, page = 1) {
    const data = await axios.get("https://api.themoviedb.org/3/movie/now_playing?api_key=" + apiKey + "&language=" + language + "&page=" + page)
    return data.data;
 }
 export async function movieDetailsReturn(id, apiKey, language) {
-   const data = await axios.get("http://api.themoviedb.org/3/movie/" + id + "?api_key=" + apiKey + "&language=" + language + "&append_to_response=videos,images")
+   const data = await axios.get("https://api.themoviedb.org/3/movie/" + id + "?api_key=" + apiKey + "&language=" + language + "&append_to_response=videos,images&include_image_language=" + language + ",null")
    return data.data;
 }
 export async function movieActorsReturn(id, apiKey) {
@@ -20,26 +20,17 @@ export async function movieImagensReturn(id, apiKey, language) {
    return data.data;
 }
 export async function movieRecomendationsReturn(id, apiKey) {
-   const data = await axios.get("https://api.themoviedb.org/3/movie/" + id + "/recommendations?api_key=" + apiKey + "&language=" + language + "&page=1")
-   return data.data
+   const data = await axios.get("https://api.themoviedb.org/3/movie/" + id + "/recommendations?api_key=" + apiKey + "&language=" + LANGUAGE + "&page=1")
+   return data.data.results
 }
-export async function movieFilterReturn(apiKey,language,genre,page=1) {
-   console.log("https://api.themoviedb.org/3/discover/movie?api_key="+apiKey+"&language="+language+"&sort_by=popularity.desc&include_adult=false&include_video=false&page="+page+"&year=2021&with_genres=28&with_watch_monetization_types=flatrate")
-   // "&language=pr-BR"
-   // "&sort_by=popularity.desc"
-   // "&include_adult=false"
-   // "&include_video=false"
-   // "&page=1&year=2021"
-   // "&with_genres=28"
-   // "&with_watch_monetization_types=flatrate"
-   const genreUrl = genre !== undefined ? "&with_genres="+genre : ""
-   const url = "https://api.themoviedb.org/3/discover/movie?api_key="+apiKey+"&language="+language+"&sort_by=popularity.desc&include_adult=false&include_video=false&page="+page+"&year=2021"+genreUrl+ "&with_watch_monetization_types=flatrate"
+export async function movieFilterReturn(apiKey, language, genre, year, page = 1) {
+   // const yearActual = new Date().getFullYear()
+   // const yearUrl = year !== undefined ? year === "" ?  "" : "&primary_release_year="+yearActual : ""
+   const genreUrl = genre !== undefined ? "&with_genres=" + genre : ""
+   const url = "https://api.themoviedb.org/3/discover/movie?api_key=" + apiKey + "&language=" + language + "&sort_by=popularity.desc&include_adult=false&include_video=false&page=" + page + "&primary_release_year=" + year + genreUrl + "&with_watch_monetization_types=flatrate"
    const data = await axios.get(url)
-   return data.data
+   return data.data.results
 }
-
-export const HomeNowPlayingQtd = 5
-
 export function moviePrice(movie) {
    const valueBase = movie.vote_average * 1;
    const genreType = !!movie.genres === true ? 1 : !!movie.genre_ids === true ? 2 : []
@@ -72,9 +63,8 @@ export function moviePrice(movie) {
    }
    // pegando todos os descontos por genero
    const discountMovieGenre = genreMovieDiscount(allGenres);
-   // Ternário para nenhum filme ficar com o valor negativo, caseo o seu genero tenha algum desconto grande.
+   // Ternário para nenhum filme ficar com o valor negativo, case o seu genero tenha algum desconto grande.
    const totalValue = (valueBase - (discountMovieGenre.totalDiscount + discountAll)).toFixed(2) < 0 ? 0 : (valueBase - (discountMovieGenre.totalDiscount + discountAll)).toFixed(2);
-   // console.log("FINAL DESCONTO",{ originalValue: parseFloat(valueBase), totalValue: parseFloat(totalValue), discountMovieGenre: discountMovieGenre })
    return { originalValue: parseFloat(valueBase), totalValue: parseFloat(totalValue), discountMovieGenre: discountMovieGenre };
 }
 export function allMovieDiscountPrice(allCartMovies) {
@@ -97,7 +87,7 @@ export function allMovieDiscountPrice(allCartMovies) {
       return { "totalDiscount": totalDiscount, "discountPerGenre": discountPerGenre }
    }
 
-   // DEFINE O VALOR  : VALOR DO FILME, VALOR DO FILME COM DESCONTO, VALOR TOTAL DO DESCONTO, VALOR DO DESCONTO POR CATEGORIA.
+   // DEFINE O VALOR DE: VALOR DO FILME, VALOR DO FILME COM DESCONTO, VALOR TOTAL DO DESCONTO, VALOR DO DESCONTO POR CATEGORIA.
    allMoviesValue = allMovies.map((movie) => {
       const prices = {};
       prices.ALLPRICE = genreMovieDiscount(movie.genres);
@@ -115,9 +105,9 @@ export function allMovieDiscountPrice(allCartMovies) {
          allValues.allDiscountPerGenre[genre[0]] = genre[1] + (allValues.allDiscountPerGenre[genre[0]] === undefined ? 0 : allValues.allDiscountPerGenre[genre[0]]);
       })
    })
+
    return allValues;
 }
-
 export const genresInfo =
 {
    "genres": [
@@ -200,7 +190,7 @@ export const genresInfo =
    ],
    "genresDiscount":
    {
-      "28": 0.15,//"Ação"
+      "28": 0,//"Ação"
       "12": 0,//"Aventura"
       "16": 0,//"Animação"
       "35": 0,//"Comédia"
@@ -244,7 +234,6 @@ export const genresInfo =
    }
 
 }
-
 export const certification = {
    "BR": [
       {

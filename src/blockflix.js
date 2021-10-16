@@ -1,12 +1,9 @@
 import "./styles/globalstylesIndex.css";
 import { routes } from "./route/route.js";
 import { Switch, Route, Redirect, useLocation } from "react-router-dom";
-import NavBar from "./components/navbar/navbar"
-import Footer from "./components/footer/footer";
+import NavBar from "./components/navbar/navbar";
 import { useContext } from "react";
 import { CartMovieContext } from "./context/cartmoviescontext";
-
-
 
 
 export default function BlockFlix() {

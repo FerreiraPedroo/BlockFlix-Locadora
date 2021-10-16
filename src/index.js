@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import BlockFlix from './blockflix.js';
-import CartMoviesProvider from "./context/cartmoviescontext";
+import {CartMoviesProvider} from "./context/cartmoviescontext";
 
 
 ReactDOM.render(
