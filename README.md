@@ -6,12 +6,13 @@ Jogo infantil utilizando drag and drop do JQuery.
 
 ## Como jogar
 
-#### Tela de login.
+#### Tela de login, o login é livre.
 ![image](https://user-images.githubusercontent.com/73146680/149239871-828d963b-ad96-4eaa-a488-6666c48792f4.png)
 
 #### Tela inicial onde é exibido os principais lançamentos, logo abaixo é exibido a listagems de filmes que podem ser classificadas por gênero e ano de lançamento, podendo escolher a quantidade de filmes a serem exibidos.
 ![image](https://user-images.githubusercontent.com/73146680/149239813-e1b34379-8ef2-412e-aaa9-1d573c57a3b7.png)
 
+#### As demais funcionalidades, carrinho de compras e ordens de compra estão funcionandos.
 
 ## Equipe
   - [Pedro Henrique](https://github.com/FerreiraPedroo)
