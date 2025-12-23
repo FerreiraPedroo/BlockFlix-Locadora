@@ -4,6 +4,10 @@
 
 Jogo infantil utilizando drag and drop do JQuery.
 
+## Apresentação do jogo
+
+<a href="https://www.canva.com/design/DAEsi5F9Y1s/vieP_FRZfR9pb6HuQsZg6A/edit?utm_content=DAEsi5F9Y1s&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">Apresentação Canvas</a>
+
 ## Como jogar
 
 #### Tela de login, o login é livre.
